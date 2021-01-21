@@ -28,35 +28,35 @@ jobs:
       - name: Build/Push Slim OSS image
         run: |
           docker buildx build --push \
-            -m 4g \
             --build-arg JET_VERSION=${{ github.event.inputs.JET_VERSION }} \
             --build-arg JET_VARIANT="slim" \
             --tag ufukyilmaz/hazelcast-jet:latest-snapshot-slim \
+            --memory 4g \
             --platform=linux/arm64,linux/amd64 hazelcast-jet-oss
 
       - name: Build/Push Full OSS image
         run: |
           docker buildx build --push \
-            -m 4g \
             --build-arg JET_VERSION=${{ github.event.inputs.JET_VERSION }} \
             --build-arg JET_VARIANT="full" \
             --tag ufukyilmaz/hazelcast-jet:latest-snapshot \
+            --memory 4g \
             --platform=linux/arm64,linux/amd64 hazelcast-jet-oss
 
       - name: Build/Push Slim EE image
         run: |
           docker buildx build --push \
-            -m 4g \
             --build-arg JET_VERSION=${{ github.event.inputs.JET_VERSION }} \
             --build-arg JET_VARIANT="slim" \
             --tag ufukyilmaz/hazelcast-jet-enterprise:latest-snapshot-slim \
+            --memory 4g \
             --platform=linux/arm64,linux/amd64 hazelcast-jet-enterprise
 
       - name: Build/Push Full EE image
         run: |
           docker buildx build --push \
-            -m 4g \
             --build-arg JET_VERSION=${{ github.event.inputs.JET_VERSION }} \
             --build-arg JET_VARIANT="full" \
             --tag ufukyilmaz/hazelcast-jet-enterprise:latest-snapshot \
+            --memory 4g \
             --platform=linux/arm64,linux/amd64 hazelcast-jet-enterprise
