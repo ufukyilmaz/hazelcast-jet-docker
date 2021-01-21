@@ -20,6 +20,7 @@ jobs:
         with:
           buildx-version: v0.4.1
           qemu-version: 4.2.0-7
+          driver-opts: env.BUILDKIT_STEP_LOG_MAX_SIZE=-1
 
       - name: Login to Docker Hub
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
@@ -27,6 +28,7 @@ jobs:
       - name: Build/Push Slim OSS image
         run: |
           docker buildx build --push \
+            -m 4g \
             --build-arg JET_VERSION=${{ github.event.inputs.JET_VERSION }} \
             --build-arg JET_VARIANT="slim" \
             --tag ufukyilmaz/hazelcast-jet:latest-snapshot-slim \
@@ -35,6 +37,7 @@ jobs:
       - name: Build/Push Full OSS image
         run: |
           docker buildx build --push \
+            -m 4g \
             --build-arg JET_VERSION=${{ github.event.inputs.JET_VERSION }} \
             --build-arg JET_VARIANT="full" \
             --tag ufukyilmaz/hazelcast-jet:latest-snapshot \
@@ -43,6 +46,7 @@ jobs:
       - name: Build/Push Slim EE image
         run: |
           docker buildx build --push \
+            -m 4g \
             --build-arg JET_VERSION=${{ github.event.inputs.JET_VERSION }} \
             --build-arg JET_VARIANT="slim" \
             --tag ufukyilmaz/hazelcast-jet-enterprise:latest-snapshot-slim \
@@ -51,6 +55,7 @@ jobs:
       - name: Build/Push Full EE image
         run: |
           docker buildx build --push \
+            -m 4g \
             --build-arg JET_VERSION=${{ github.event.inputs.JET_VERSION }} \
             --build-arg JET_VARIANT="full" \
             --tag ufukyilmaz/hazelcast-jet-enterprise:latest-snapshot \
