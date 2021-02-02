@@ -54,13 +54,13 @@ jobs:
             docker buildx build --push \
               --build-arg JET_VERSION=${{ github.event.inputs.JET_VERSION }} \
               --build-arg JET_VARIANT="${{ matrix.variant.name }}" \
-              --tag hazelcast/${{ matrix.type.image }}:${{ env.RELEASE_VERSION }}${{ matrix.variant.suffix }} \
-              --tag hazelcast/${{ matrix.type.image }}:latest${{ matrix.variant.suffix }} \
+              --tag ufukyilmaz/${{ matrix.type.image }}:${{ env.RELEASE_VERSION }}${{ matrix.variant.suffix }} \
+              --tag ufukyilmaz/${{ matrix.type.image }}:latest${{ matrix.variant.suffix }} \
               --platform=linux/arm64,linux/amd64 ${{ matrix.type.folder }}
           else
             docker buildx build --push \
               --build-arg JET_VERSION=${{ github.event.inputs.JET_VERSION }} \
               --build-arg JET_VARIANT="${{ matrix.variant.name }}" \
-              --tag hazelcast/${{ matrix.type.image }}:${{ env.RELEASE_VERSION }}${{ matrix.variant.suffix }} \
+              --tag ufukyilmaz/${{ matrix.type.image }}:${{ env.RELEASE_VERSION }}${{ matrix.variant.suffix }} \
               --platform=linux/arm64,linux/amd64 ${{ matrix.type.folder }}
           fi
